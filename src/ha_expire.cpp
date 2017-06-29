@@ -52,7 +52,7 @@ void foo()
 {
     
 }
-
+/*
 template <typename K, typename V>
 void AutoExpireTab<K, V>::init()
 {
@@ -107,9 +107,9 @@ V AutoExpireTab<K, V>::get(K key)
 {
     return table[key];
 }
+*/
 
-
-
+/*
 
 int main()
 
@@ -134,7 +134,7 @@ int main()
 //    t1.join();
     return 0;
 }
-
+*/
 
 
 
