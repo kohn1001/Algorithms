@@ -27,44 +27,27 @@ bool cmp (const vector<string> &a, const vector<string> &b) {
   return a[1] > b[1];
 }
 
-/*
-bool isPunc (char c) {
-  if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
-    return false;
-  }
-  return true;
-}
-*/
-
 vector<vector<string>> wordCountEngine(string &document) {
-
   
-  /* the vector size would be the number of unique words - */
   vector<vector<string>> res;
   if (document.size() == 0) return res;
   transform (document.begin(), document.end(), document.begin(), ::tolower);
   string new_doc;
   for (auto &d : document) {
-    if (!ispunct(d) || d == ' ') {
-      new_doc += d;
+    if (!ispunct(d)) {
+		new_doc += d;
     }
   }
  
 
-  //document.remove_if(ispunct);
   map<string, int> hist;
   stringstream ss (new_doc);
-  //stringstream ss (document);
   string d;
+
   while (ss >> d) {
-    if (hist.find(d) == hist.end()) {
-      hist.emplace(d, 1);
-    }
-    else {
-      hist[d]++;
-    }
+	  hist[d]++;
   }
-  // your code goes here
+
   for (auto &h :hist) {
     vector<string> vs;
     vs.push_back(h.first); vs.push_back(to_string(h.second));
