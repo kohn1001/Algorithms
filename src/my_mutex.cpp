@@ -21,7 +21,7 @@ void MyMutex::lock()
 	while(!testNset(mut)) {
 		q.push(threadId);
 		markNotRunning(threadId);
-		callSche();
+		callSched();
 	}
 }
 
@@ -36,5 +36,9 @@ void MyMutex::unlock()
 	else {
 		mut = 0;
 	}
+}
+
+void MyMutex::tryLock()
+{
 }
 
