@@ -31,6 +31,7 @@ void MyMutex::unlock()
 		auto threadId = q.front(); q.pop();
 		markRunning(threadId);
 		callSched();
+		mut = 0;
 		lock();
 	}
 	else {
