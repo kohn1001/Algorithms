@@ -29,10 +29,10 @@ void MyMutex::unlock()
 {
 	if (!q.empty()) {
 		auto threadId = q.front(); q.pop();
+		mut = 0;
 		markRunning(threadId);
 		callSched();
-		mut = 0;
-		lock();
+		//lock();
 	}
 	else {
 		mut = 0;
