@@ -27,16 +27,18 @@ void MyMutex::lock()
 
 void MyMutex::unlock()
 {
+	spin_lock();
 	if (!q.empty()) {
 		auto threadId = q.front(); q.pop();
-		mut = 0;
+		atomic_set(mut, 0);
 		markRunning(threadId);
-		callSched();
+		
 		//lock();
 	}
 	else {
-		mut = 0;
+		atomic_set(mut, 0); 
 	}
+	spin_unlock();
 }
 
 void MyMutex::tryLock()
