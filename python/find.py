@@ -13,7 +13,7 @@ you should get: {'d430c68778e3cb4a8d17d24e7ddc1ae4', [<path to file1>, <path to 
 otherwise you 
 just get:       {'d430c68778e3cb4a8d17d24e7ddc1ae4', [<path to file1>]}
 
-
+Take it to your computer and just run it and see
 """
 import os
 import hashlib
