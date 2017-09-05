@@ -2,7 +2,8 @@
 
 I've found this question when browsing the web, DropBox interview question.
 
-This script calculate a md5sum for each find in the directory you run it from (and recursively in the sub directories as well ----> DFS)
+This script calculate a md5sum for each find in the directory you run it from (and recursively in the sub directories as well
+----> DFS)
 
 If there may be files with the same content you should get it a list.
 
