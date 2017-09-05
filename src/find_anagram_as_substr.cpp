@@ -29,7 +29,7 @@ using namespace std;
  *
  */
 
-const int SIZE = 1 << 15;
+const int SIZE = 1 << 10;
 const int alphaBetSize = 26;
 const char startWithChar = 'a';
 
@@ -42,7 +42,6 @@ int getPrime (char c)
 		int i = 2, cnt = 0;
 		char ic = startWithChar;
 		while (cnt < alphaBetSize) {
-			cout << "i is: " << i << endl;
 			cnt += (primes[i] ? 1 : 0);
 			if(primes[i]) {
 				charToPrime.emplace(ic, i);
