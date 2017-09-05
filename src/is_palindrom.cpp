@@ -1,3 +1,8 @@
+/*
+Facebook interview question:
+Determine if Palindrom - case insensitive ('A' and 'a' are equal), ignore puctuation
+*/
+
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -26,7 +31,7 @@ bool isPali(string str)
 
 int main () 
 {
-	cout << "Please endter the string you want to check if palindrom: " << endl;
+	cout << "Please enter the string you want to check if palindrom: " << endl;
 	string str;
 	cin >> str;
 	
