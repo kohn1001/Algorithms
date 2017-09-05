@@ -1,118 +1,58 @@
 #include <iostream>
+#include <unordered_set>
 #include <string>
 #include <vector>
-#include <unordered_set>
-
+#include <algorithm>
 
 using namespace std;
-const int AB_LEN = 26;
-
-static const unordered_set<string> dictionary {"dog", "cat", "rat"};
-
-struct Node {
-	Node (): isLeaf(false),
-			 children(AB_LEN, nullptr)
-	{}
-	bool isLeaf;
-	vector<Node*> children;	
-	~Node () {
-		for (auto &n : children) {
-			releaseMem(n);
-		}
-	}
-	void releaseMem(Node *n) {
-		if (n) {
-			for (auto &i : n->children) {
-				releaseMem(i);
-			}
-			delete(n);
-		}		
-	}
-};
 
 bool isInDict(string str)
 {
-	if (dictionary.find(str) != dictionary.end()) { return true; }
+	static unordered_set<string> dict = { "ilo", "ilove", "love","harry", "potter" };
+	if (dict.find(str) == dict.end()) { return false; }
+	return true;
+}
+
+
+bool break_word (string str, vector<string> &res)
+{
+	if (str.empty()) { 
+		return true;
+	}
+	for (int i=0; i <= str.size(); ++i) {
+		string new_str = str.substr(0, i);
+		cout << "new_str is : " << new_str << endl;
+		if (isInDict(new_str)) { 
+			res.emplace_back(new_str);
+			if(break_word(str.substr(i, str.size()-i), res)) {
+				return true;
+			}
+			else {
+				auto to_del = find(res.begin(), res.end(), new_str);
+				res.erase(to_del);
+			}
+		}
+	}
 	return false;
-}
-
-void insertToTrie(Node *t, string s)
-{
-	for (auto &is : s) {
-		int os = is - 'a';
-		if (t->children[os] == nullptr) {
-			t->children[os] = new Node();
-		}
-		t = t->children[os];
-	}
-	t->isLeaf = true;
-}
-
-
-
-void printTrie(Node *t, string word)
-{
-	if (t && t->isLeaf) {
-		cout << word << endl;
-	}
-	for (int i=0; i < AB_LEN; ++i) {
-		string s{ char(i +'a')};
-		if (t->children[i]) {
-			printTrie(t->children[i], word + s);
-		}
-	}
-}
-
-Node *getTrie(string w)
-{
-	Node *n = new Node();
-	for (int i=0; i < w.size(); ++i) {
-		string suff = string(w.begin() + i, w.end());
-		cout << "test getTrie: " << suff << endl;
-		insertToTrie(n, suff);
-	}
-	return n;
-}
-void getCurrComb (Node *t, string currW, int &cnt)
-{
-	if (isInDict(currW)) {
-		cout << "in dict " << currW << endl;
-		++cnt;
-		if(t->isLeaf) { ++cnt; }
-	}
-	for (int i=0; i < AB_LEN; ++i) {
-		if (t->children[i]) {
-			string s {char(i+'a')};
-			getCurrComb(t->children[i], currW + s, cnt);
-		}
-	}
-}
-
-string getMaxCombWord ( vector<string> &words, int &maxCnt)
-{
-//	int maxCnt = 0;
-	string word;
-	Node *t = nullptr;
-	for (auto &w : words) {
-		t = getTrie(w);
-		int currCnt = 0;
-		getCurrComb(t, "", currCnt);
-		if (currCnt > maxCnt) {
-			maxCnt = currCnt;
-			word = w;
-		}
-	}
-	return word;
 }
 
 int main()
 {
-	vector<string> words { "dogcat", "dog", "cat", "dogcatrat", "dogcatraatratdog"};
-	//Node *n = getTrie (str);
-	int maxCnt = 0;
-	string res = getMaxCombWord(words, maxCnt);
-	cout << "res: " << res << endl;
-	cout << "max cnt: " << maxCnt << endl;
+	vector<string> res;
+	break_word("iloveharrypotter", res);
+	for (auto &r : res) {
+		cout << r << endl;
+	}
+
 	return 0;
 }
-
+/*output is:
+ * In the example we see that although the algo will firt try to break the word with "ilo" eventually fails and then
+ * we get the output below:
+ilove
+harry
+potter
+ *
+ *
+ *
+ */
