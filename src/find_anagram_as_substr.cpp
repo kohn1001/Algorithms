@@ -38,6 +38,7 @@ int getPrime (char c)
 {
 	static bool firstTime = true;
 	static map<char, int> charToPrime;
+	/*happen only in first call */
 	if(firstTime) {
 		int i = 2, cnt = 0;
 		char ic = startWithChar;
@@ -58,24 +59,22 @@ int calcHash(const string & str, int n = SIZE)
 {
 	int cnt = 1;
 	for (auto s:str) {
-		//cnt *= charToPrime[s];
 		cnt *= getPrime(s);
 	}
 	return cnt;
 }
 
-bool checkAnaAsSubstr(const string &str, const string &s) 
+bool checkAnaAsSubstr(const string &str, const string &pattern)
 {
-	int sHash = calcHash(s);
-	string sub = str.substr(0, s.size());
+	int patternHash = calcHash(pattern);
+	string sub = str.substr(0, pattern.size());
 	int strHash = calcHash(sub);
 	for ( int i=0; i < str.size(); ++i) {
-	//	if (calcHash(sub) == sHash) {
-		if (strHash == sHash) {
+		if (strHash == patternHash) {
 			return true;
 		}
 		strHash /= getPrime(str[i]);
-		strHash *= getPrime(str[i+s.size()]);
+		strHash *= getPrime(str[i+pattern.size()]);
 	}
 	return false;
 }
