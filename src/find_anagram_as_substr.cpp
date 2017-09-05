@@ -6,7 +6,8 @@
 
 using namespace std;
 /*
- *
+ * Anagram strings are the string that have the same character not necessarly in the same order/ permutation, for example: cat and tac are
+ * anagrams
  *
  * Find Anagram in a string as substring: this is a super cool algorithm I've come with (I'm using a variation of Rabin-Karp Algo)
  *
