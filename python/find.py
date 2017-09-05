@@ -27,17 +27,12 @@ def find_dup(path_name, dup_list):
             dup_list[cont].append(d_full_path)
     return 
 
-
-def check_dict(my_dict):
-    my_dict[0] = 1
-    my_dict[1] = 2
-
-
 my_dict = defaultdict(list)
 
 """
 Pay attention --> similar to Java objects are passed by ref - for that matter we are sending my_dict and 
-find_dup is changing it (this code in C/C++ would return my_dict empty - send by value )
+find_dup is changing it (this code in C/C++ would return my_dict empty - because in C/C++ if not explicit - objects and primitives
+are passed to function  by value)
 
 """
 find_dup(os.getcwd(), my_dict)
