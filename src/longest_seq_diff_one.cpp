@@ -26,14 +26,13 @@ int getLongestSeq(vector<int> &a)
 	}
 
 	int prevObjectCount = 0;
-	for (auto &h : hist) {
-		if (prevObjectCount == 0) {
-			prevObjectCount = h.second;
-			maxSeq = prevObjectCount;
-			continue;
+	int prevObject;
+	for (auto h=hist.begin(); h != hist.end(); ++h) {
+		if(h != hist.begin() && (h->first - prevObject == 1)) {
+			maxSeq = max(maxSeq, prevObjectCount + h->second);
 		}
-		maxSeq = max(maxSeq, prevObjectCount + h.second);
-		prevObjectCount = h.second;
+		prevObjectCount = h->second;
+		prevObject = h->first;
 	}
 	return maxSeq;
 }
@@ -45,6 +44,5 @@ int main()
 
 	cout << "longest Subseq is: " << getLongestSeq(a) << endl;
 	cout << "longest Subseq is: " << getLongestSeq(b) << endl;
-
 	return 0;
 }
