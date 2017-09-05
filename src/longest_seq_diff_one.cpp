@@ -2,7 +2,12 @@
 #include <string>
 #include <vector>
 #include <map>
+/*
 
+Find the logest sequence the objects are differ by one:
+[1,1,1,0,0,2,2,2]
+
+*/
 using namespace std;
 
 int getLongestSeq(vector<int> &a)
