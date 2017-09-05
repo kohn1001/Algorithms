@@ -47,7 +47,7 @@ int main()
 	return 0;
 }
 /*output is:
- * In the example we see that although the algo will firt try to break the word with "ilo" eventually fails and then
+ * In the example we see that although the algo will first try to break the word with "ilo" eventually fails and then
  * we get the output below:
 ilove
 harry
