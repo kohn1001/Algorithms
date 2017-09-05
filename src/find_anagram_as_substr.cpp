@@ -35,6 +35,7 @@ const int alphaBetSize = 26;
 const char startWithChar = 'a';
 
 static vector<int> primes (SIZE, 1);
+/* we want to get the same unique number to Anagram (order in seq is not import.) */
 int getPrime (char c)
 {
 	static bool firstTime = true;
