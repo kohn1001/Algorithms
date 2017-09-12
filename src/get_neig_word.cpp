@@ -44,7 +44,7 @@ vector<string> getAllWordsPerm (vector<string> allWords, set<string> &exist, int
 
 vector<string> getAllWordsPerm (vector<string> allWords, int n) {
 	set<string> s;
-//	cout << "getAllWordsPerm" << endl;
+
 	vector<string> res = getAllWordsPerm(allWords, s, n);
 	return res;
 }
