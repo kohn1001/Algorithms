@@ -21,3 +21,5 @@ Pods
 bin/
 test_input
 output/
+asm
+	
