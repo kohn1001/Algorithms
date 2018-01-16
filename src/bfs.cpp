@@ -29,7 +29,8 @@ const vector<int> ncol = {  0, 1, 0, -1 };
 class Bfs {
 
 	public:
-		Bfs(vector<vector<int>> &mat, int rowsNum, int colsNum) :  mat(mat), m(rowsNum), n(colsNum), visited(m, vector<bool>(n, false))  
+		Bfs(vector<vector<int>> &mat, int rowsNum, int colsNum) :  
+			mat(mat), m(rowsNum), n(colsNum), visited(m, vector<bool>(n, false))  
 		{
 		}	
 		int run (ii src, ii dst);
