@@ -10,8 +10,8 @@ using ii = pair<int, int>;
 using bfP = pair<int, ii>; // { dist, {i, j}}
 
 
-
 namespace my_bfs {
+
 
 /*
  *              |  i-1, j  |
@@ -22,11 +22,10 @@ namespace my_bfs {
  *
  */
 
-const vector<int> nrow = { -1, 0, 1,  0 };
-const vector<int> ncol = {  0, 1, 0, -1 };
-
-
 class Bfs {
+
+	static const vector<int> ncol; // = {  0, 1, 0, -1 };
+	static const vector<int> nrow; // = { -1, 0, 1,  0 };
 
 	public:
 		Bfs(vector<vector<int>> &mat, int rowsNum, int colsNum) :  
@@ -96,8 +95,12 @@ int Bfs::run (ii src, ii dst) {
 
 } // end of my_bfs amespace 
 
+const vector<int> my_bfs::Bfs::nrow = { -1, 0, 1,  0 };
+const vector<int> my_bfs::Bfs::ncol = { -1, 0, 1,  0 };
+
 int main()
 {
+		
 	vector<vector<int>> mat = { 
 								{ 1, 0, 0, 0, 1, 1, 1, 0 },
 								{ 1, 0, 1, 0, 1, 0, 1, 1 },
