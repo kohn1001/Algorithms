@@ -1,5 +1,13 @@
+"""
+    I have a better version here: 
+    https://github.com/kohn1001/Algorithms/blob/master/python/des_n_serialize_tree.py
+    But I leave this one to have a nother way of implementation
 
+    here is a better version 
+
+"""
 file_name = 'serialize_tree'
+
 class Node:
     def __init__(self, val=None):
         self.val = val
@@ -44,12 +52,14 @@ def de_serialize_aux(fi):
 
 
 def de_serialize():
+    #should use with - but haven't for the non-Python readers
     fi = open(file_name)
     for f in fi:
         des_tree = f.split(" ")
     print des_tree
     des_tree = deque(des_tree)
     root = de_serialize_aux(des_tree)
+    fi.close()
     return root
 
 '''
@@ -64,6 +74,33 @@ root.right = Node(3)
 root.left = Node(7)
 root.right.right = Node(4)
 
+print_tree(root)
+serialize(root)
+new_root = de_serialize()
+print_tree(new_root)
+
+'''
+        75
+      /   \
+     7    13
+      \   / \
+      10  9  7
+              \
+               4
+
+
+
+'''
+
+
+root = Node(75)
+root.right = Node(13)
+root.left = Node(7)
+root.right.right = Node(7)
+root.right.left = Node(9)
+root.left.right = Node(10)
+root.right.right.right = Node(4)
+print ('new tree')
 print_tree(root)
 serialize(root)
 new_root = de_serialize()
