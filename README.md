@@ -12,4 +12,5 @@ kohn1001@gmail.com
 
 ##Python
 ###Searches
+
 [Sudoku](https://github.com/kohn1001/Algorithms/blob/master/python/sudoku_sol.py)
